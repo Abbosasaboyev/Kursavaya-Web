@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body class="body">
+    <header class="header">
+        <div class="header_container">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="logo">Hotels</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <nav class="header_container-nav">
+                    <ul class="header_container-ul">
+                        <li><a asp-area="" asp-controller="Index" asp-action="Home" class="nav_links">Главная</a></li>
+                        <li><a href="#" class="nav_links">Бронирование</a></li>
+                        <li><a href="#" class="nav_links">Контакты</a></li>
+                    
+                        <li class="form_padding">
+                            <form method="post" asp-controller="Account" asp-action="Logout">
+                                <button class="logout_btn" type="submit">Выход</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            }   
+            else
+            {
+                <nav class="header_container-nav">
+                    <ul class="header_container-ul">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index" class="nav_links">Главная</a></li>
+                        <li><a href="#" class="nav_links">Бронирование</a></li>
+                        <li><a href="#" class="nav_links">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="header_container-reg">
+                    <a asp-area="" asp-controller="Account" asp-action="Login" class="reg_singin">Войти</a>
+                    <a asp-area="" asp-controller="Account" asp-action="Register" class="reg_singup">Регистрация</a>
+                </div>
+            }
+        </div>
+    </header>
+
+    <main role="main" class="main">
+        @RenderBody()
+    </main>
+
+
+    <footer class="footer">
+        <div class="list">
+            <div class="footer_list">
+                <div class="footer_list-title">Полезные ссылки</div>
+                <nav>
+                    <ul class="nav_ul">
+                        <li><a href="#">FAQS</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Предметы</a></li>
+                        <li><a href="#">Тесты</a></li>
+                        <li><a href="#">Поддержка</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer_newsletter-title">Newsletter</div>
+                <div class="footer_newsletter-subtitle">Подпишись на рассылку, чтобы быть всегда в курсе последних новостей</div>
+                <form action="" class="footer_newsletter-form">
+                    <input type="email" class="form_input" placeholder="E-mail">
+                    <button class="form_btn"><img src="~/img/backcopy2.png" alt=""></button>
+                </form>
+                <div class="footer_social">
+                    <div class="footer_social-copirate">Copyrating 2023 100 Hotels</div>
+                    <div class="footer_social-container">
+                        <img src="~/img/free-icon-twitter-sign-25347.png" alt="twitter" width="32" height="32">
+                        <img src="~/img/free-icon-instagram-1384031.png" alt="inst" width="32" height="32">
+                        <img src="~/img/free-icon-vk-logo-81893.png" alt="vk" width="32" height="32">
+                        <img src="~/img/free-icon-gmail-8505113.png" alt="gmail" width="32" height="32">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
